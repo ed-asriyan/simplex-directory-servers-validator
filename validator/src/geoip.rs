@@ -60,7 +60,6 @@ impl GeoIp {
         };
 
         let result = self.reader.lookup(ip)?;
-        
         let country: maxminddb::geoip2::Country = result
             .decode()?
             .ok_or("Country information could not be found")?;
