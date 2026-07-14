@@ -56,9 +56,7 @@ fn get_port_from_authority(authority: &str) -> Option<u16> {
         return None;
     }
     // domain:port or ipv4:port
-    let mut parts = authority.splitn(2, ':');
-    parts.next();
-    parts.next().and_then(|p| p.parse::<u16>().ok())
+    authority.rsplit_once(':').and_then(|(_, p)| p.parse::<u16>().ok())
 }
 
 fn get_ip_from_authority(authority: &str) -> Option<IpAddr> {
